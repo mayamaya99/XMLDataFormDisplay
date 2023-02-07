@@ -21,9 +21,18 @@ namespace XMLDataForm
 
         private void buttonXml_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
-            ds.ReadXml(currentDocPath);
-            dataGridView1.DataSource = ds.Tables[0];
+            try
+            {
+                DataSet ds = new DataSet();
+                ds.ReadXml(currentDocPath);
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.GhostWhite;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
